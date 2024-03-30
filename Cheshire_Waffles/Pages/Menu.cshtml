@@ -1,0 +1,51 @@
+﻿@page
+@model MenuModel
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<div class="text-center my-5">
+        <h1>Menu</h1>
+        <h6>Explore our tantalizing menu, where every dish is a masterpiece of flavor and creativity.</h6>
+</div>
+
+<form method="get">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search" placeholder="Search items..." value="@Model.searchQuery">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@{ var cardCounter = 0; }
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @foreach (var item in Model.MenuItems)
+    {
+        <div class="col my-5">
+            <div class="card h-100">
+                <img src="~/images/menu/@item.ImageUrl" class="card-img-top" alt="@item.Name" width="300px" height="200px"/>
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                    <p class="card-text">Price: $@item.Price</p>
+                </div>
+                <div class="card-footer">
+                    <!-- Form for ordering an item -->
+                    <form method="post" asp-page="/Menu" asp-page-handler="Order" asp-route-id="@item.Id">
+                        <!-- Hidden input to store the item ID -->
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <!-- Button to submit the form -->
+                        <button type="submit" class="btn btn-primary">Order Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        cardCounter++;
+
+        if (cardCounter % 3 == 0)
+        {
+            @:</div><div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        }
+    }
+</div>

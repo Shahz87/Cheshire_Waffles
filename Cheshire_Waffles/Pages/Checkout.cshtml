@@ -1,0 +1,49 @@
+﻿@page
+@model CheckoutModel
+@{
+    // Set the title of the page
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="text-center my-5">
+    <h1>Checkout</h1>
+</div>
+
+<!-- Table to display cart items -->
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each item in the cart and display details -->
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <!-- Display item name -->
+                    <td>@item.Name</td>
+                    <!-- Display item quantity -->
+                    <td>@item.Quantity</td>
+                    <!-- Display item price -->
+                    <td>$@item.Price</td>
+                    <!-- Calculate and display subtotal for the item -->
+                    <td>$@(item.Price * item.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Display total amount to be paid -->
+<p class="fw-bold">Total: $@Model.Total</p>
+
+<!-- Form for submitting the purchase -->
+<form method="post" asp-page-handler="Purchase" class="text-end">
+    <!-- Button to submit the form -->
+    <button type="submit" class="btn btn-primary">Purchase</button>
+</form>

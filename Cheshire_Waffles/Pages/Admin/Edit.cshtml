@@ -1,0 +1,41 @@
+﻿@page "{id:int}"
+@model Cheshire_Waffles.Pages.Admin.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Menu Item</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MenuItem.Id" />
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="Name" asp-for="MenuItem.Name" class="form-control" />
+        <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <input type="text" id="Description" asp-for="MenuItem.Description" class="form-control" />
+        <span asp-validation-for="MenuItem.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Price" class="form-label">Price</label>
+        <input type="text" id="Price" asp-for="MenuItem.Price" class="form-control" />
+        <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="ImageUrl" class="form-label">Image URL</label>
+        <input type="file" id="Image" name="Image" class="form-control" />
+        <input type="text" id="ImageUrl" asp-for="MenuItem.ImageUrl" class="form-control" hidden/>
+        <span asp-validation-for="MenuItem.ImageUrl" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-page="./Admin" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

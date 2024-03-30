@@ -1,0 +1,53 @@
+﻿@page
+@model Cheshire_Waffles.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Menu Items";
+}
+
+<h1>Menu Items</h1>
+
+@{
+    if (TempData["Notification"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Notification"]
+        </div>
+        TempData.Peek("Notification");
+    }
+}
+
+<div class="text-end">
+    <a class="btn btn-primary mb-3" asp-page="./Create">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MenuItems)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td><a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a></td>
+                <td><a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a></td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                        <button class ="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

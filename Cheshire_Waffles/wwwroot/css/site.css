@@ -1,0 +1,12 @@
+.user-content p {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.ratings i {
+    color: orange;
+}
+
+#map {
+    height: 400px;
+}

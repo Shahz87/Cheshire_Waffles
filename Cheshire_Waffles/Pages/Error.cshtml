@@ -1,0 +1,45 @@
+﻿@page
+@model ContactModel
+@{
+    // Set the title of the page
+    ViewData["Title"] = "Contact";
+}
+
+<!-- Page heading -->
+<h1>Contact Us</h1>
+
+<!-- Form for submitting contact information -->
+<form method="post">
+    <!-- Input field for name -->
+    <div>
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" name="Name" required />
+    </div>
+    <!-- Input field for email -->
+    <div>
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" required />
+    </div>
+    <!-- Textarea for message -->
+    <div>
+        <label for="Message">Message:</label>
+        <textarea id="Message" name="Message" required></textarea>
+    </div>
+    <!-- Button to submit the form -->
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Placeholder for map -->
+<div id="map"></div>
+
+<!-- JavaScript section for map integration -->
+@section Scripts {
+    <!-- Include the Google Maps JavaScript API with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script>
+        // Function to initialize the map
+        function initMap() {
+            // Your map initialization code here
+        }
+    </script>
+}
